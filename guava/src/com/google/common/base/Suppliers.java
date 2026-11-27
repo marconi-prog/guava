@@ -228,14 +228,12 @@ public final class Suppliers {
    * <p>When the underlying delegate throws an exception then this memoizing supplier will keep
    * delegating calls until it returns valid data.
    *
-   * <p>The expiration time is measured from the start of the {@code get()} call that retrieves a
-   * new value, not from when the delegate returns it. This means that the time spent retrieving the
-   * value counts toward the duration. If retrieving a value takes longer than the duration, the
-   * value is returned by that call but has already expired, so the next call to {@code get()}
-   * retrieves a new value.
+   * <p>The expiration time is computed from a timestamp captured before the delegate is called, not
+   * from when it returns. Time spent retrieving the value counts toward the duration, so a value
+   * may already be expired when it is returned.
    *
-   * @param duration the length of time after a value starts being retrieved that it should stop
-   *     being returned by subsequent {@code get()} calls
+   * @param duration the length of time before a retrieved value expires, measured from the
+   *     timestamp captured before the delegate is called
    * @param unit the unit that {@code duration} is expressed in
    * @throws IllegalArgumentException if {@code duration} is not positive
    * @since 2.0
@@ -263,14 +261,12 @@ public final class Suppliers {
    * <p>When the underlying delegate throws an exception then this memoizing supplier will keep
    * delegating calls until it returns valid data.
    *
-   * <p>The expiration time is measured from the start of the {@code get()} call that retrieves a
-   * new value, not from when the delegate returns it. This means that the time spent retrieving the
-   * value counts toward the duration. If retrieving a value takes longer than the duration, the
-   * value is returned by that call but has already expired, so the next call to {@code get()}
-   * retrieves a new value.
+   * <p>The expiration time is computed from a timestamp captured before the delegate is called, not
+   * from when it returns. Time spent retrieving the value counts toward the duration, so a value
+   * may already be expired when it is returned.
    *
-   * @param duration the length of time after a value starts being retrieved that it should stop
-   *     being returned by subsequent {@code get()} calls
+   * @param duration the length of time before a retrieved value expires, measured from the
+   *     timestamp captured before the delegate is called
    * @throws IllegalArgumentException if {@code duration} is not positive
    * @since 33.1.0
    */
